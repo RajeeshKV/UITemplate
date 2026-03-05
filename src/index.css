@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* ── CSS Variables ── */
+:root {
+  --clr-bg: #f7f6f2;
+  --clr-bg-card: #ffffff;
+  --clr-text: #1a1a1a;
+  --clr-muted: #6b7280;
+  --clr-accent: #c8a96e;
+  /* Gold */
+  --clr-accent2: #1e293b;
+  /* Slate navy */
+  --clr-border: rgba(0, 0, 0, 0.08);
+  --radius: 16px;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.14);
+}
+
+.dark {
+  --clr-bg: #0f0f10;
+  --clr-bg-card: #18181b;
+  --clr-text: #f0ede8;
+  --clr-muted: #9ca3af;
+  --clr-accent: #d4b07a;
+  --clr-accent2: #e2d9c9;
+  --clr-border: rgba(255, 255, 255, 0.08);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--clr-bg);
+    color: var(--clr-text);
+    @apply antialiased transition-colors duration-300;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Syne', sans-serif;
+  }
+}
+
+@layer components {
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300;
+    background: var(--clr-accent);
+    color: #1a1a1a;
+  }
+
+  .btn-primary:hover {
+    @apply scale-105 shadow-xl;
+    filter: brightness(1.08);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 border;
+    border-color: var(--clr-text);
+    color: var(--clr-text);
+  }
+
+  .btn-outline:hover {
+    @apply scale-105;
+    background: var(--clr-text);
+    color: var(--clr-bg);
+  }
+
+  /* Cards */
+  .card {
+    background: var(--clr-bg-card);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  /* Section titles */
+  .section-label {
+    @apply text-xs font-semibold tracking-[0.2em] uppercase mb-3;
+    color: var(--clr-accent);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    @apply text-3xl md:text-5xl font-bold leading-tight;
+    color: var(--clr-text);
+  }
+
+  .section-sub {
+    @apply text-base md:text-lg leading-relaxed mt-4;
+    color: var(--clr-muted);
+  }
+
+  /* Accent underline */
+  .accent-line {
+    @apply block mt-3 h-0.5 w-12 rounded-full;
+    background: var(--clr-accent);
+  }
+
+  /* Glass card */
+  .glass {
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+  }
+
+  .dark .glass {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+/* ── Skeleton ── */
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--clr-border) 25%, rgba(200, 169, 110, 0.08) 50%, var(--clr-border) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.6s infinite linear;
+  border-radius: var(--radius);
+}
+
+/* ── Particle canvas ── */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--clr-accent);
+  border-radius: 99px;
+}
+
+/* ── Tag pill ── */
+.tag {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  background: rgba(200, 169, 110, 0.15);
+  color: var(--clr-accent);
+  border: 1px solid rgba(200, 169, 110, 0.3);
+}
